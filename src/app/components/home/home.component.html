@@ -1,0 +1,23 @@
+<header>
+  <h1>Top View Board</h1>
+</header>
+<div class="container">
+  <div class="select-box-container">
+    <form [formGroup]="form">
+      <input
+        *ngIf="!isSelectType"
+        class="text-form"
+        placeholder="Type a video name..."
+        type="search"
+        formControlName="videoName"
+      />
+      <button (click)="lookForVideo()">search</button>
+    </form>
+  </div>
+  <div class="video-list-container">
+    <div class="" *ngFor="let item of videoList">
+      <a> <img alt="images" src="{{ item.thumbnails }}" /> </a>
+      <h3>{{ item.title }}</h3>
+    </div>
+  </div>
+</div>
