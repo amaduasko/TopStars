@@ -111,4 +111,27 @@ header {
       }
     }
   }
+  .nav-container {
+    width: 50%;
+    margin: auto;
+    button {
+      font-family: monospace;
+      background: transparent;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin: 10px;
+      &:hover {
+        background-color: rgba(34, 95, 195, 1);
+        color: wheat;
+        cursor: pointer;
+      }
+    }
+  }
+  .loading {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+  }
 }

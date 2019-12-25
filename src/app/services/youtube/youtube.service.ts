@@ -7,6 +7,8 @@ import { environment } from "../../../environments/environment";
 })
 export class YoutubeService {
   favorites: object[] = [];
+  nextPage: string;
+  prevPage: string;
   api_url = environment.api_url;
   api_key = environment.api_key;
   constructor(private http: HttpClient) {}
@@ -15,7 +17,12 @@ export class YoutubeService {
       .get(
         `${this.api_url}/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=${this.api_key}`
       )
-      .pipe(map((feed: any) => feed.items));
+      .pipe(
+        map((feed: any) => {
+          this.nextPage = feed.nextPageToken;
+          return feed.items;
+        })
+      );
   }
   getFoundedVideos(title: string) {
     const regTitle = new RegExp(`${title}`, "i");
@@ -32,5 +39,31 @@ export class YoutubeService {
   addFavorite(item: {}): void {
     this.favorites.push(item);
     localStorage.setItem("favorites", JSON.stringify(this.favorites));
+  }
+  loadNextPage() {
+    return this.http
+      .get(
+        `${this.api_url}/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&pageToken=${this.nextPage}&regionCode=US&key=${this.api_key}`
+      )
+      .pipe(
+        map((feed: any) => {
+          this.prevPage = feed.prevPageToken;
+          this.nextPage = feed.nextPageToken;
+          return feed.items;
+        })
+      );
+  }
+  loadPrevPage() {
+    return this.http
+      .get(
+        `${this.api_url}/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&pageToken=${this.prevPage}&regionCode=US&key=${this.api_key}`
+      )
+      .pipe(
+        map((feed: any) => {
+          this.nextPage = feed.nextPageToken;
+          this.prevPage = feed.prevPageToken;
+          return feed.items;
+        })
+      );
   }
 }

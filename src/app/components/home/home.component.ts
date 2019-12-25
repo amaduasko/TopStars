@@ -7,6 +7,7 @@ import { YoutubeService } from "../../services/youtube/youtube.service";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+  pageCount: number = 0;
   videoList: object[] = [];
   thumbSize: string = "medium";
   form = new FormGroup({
@@ -24,7 +25,6 @@ export class HomeComponent implements OnInit {
   }
   videoLookUp(event: any): void {
     this.service.getFoundedVideos(event.target.value.trim()).subscribe(data => {
-      console.log(data);
       data.map((item: any) => {
         item.snippet.thumbnails = item.snippet.thumbnails[this.thumbSize].url;
         item.snippet.statistic = item.statistics;
@@ -34,6 +34,26 @@ export class HomeComponent implements OnInit {
   }
   addFavorite(item): void {
     this.service.addFavorite(item);
+  }
+  loadPrevPage(): void {
+    this.pageCount--;
+    this.service.loadPrevPage().subscribe((data: any) => {
+      data.map((item: any) => {
+        item.snippet.thumbnails = item.snippet.thumbnails[this.thumbSize].url;
+        item.snippet.statistic = item.statistics;
+        this.videoList = [...data.map((item: any) => item.snippet)];
+      });
+    });
+  }
+  loadNextPage(): void {
+    this.pageCount++;
+    this.service.loadNextPage().subscribe((data: any) => {
+      data.map((item: any) => {
+        item.snippet.thumbnails = item.snippet.thumbnails[this.thumbSize].url;
+        item.snippet.statistic = item.statistics;
+        this.videoList = [...data.map((item: any) => item.snippet)];
+      });
+    });
   }
   ngOnInit() {
     this.getVideosList();

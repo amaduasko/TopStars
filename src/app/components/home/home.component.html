@@ -36,4 +36,13 @@
       </div>
     </div>
   </div>
+  <div class="nav-container">
+    <button *ngIf="videoList.length && pageCount" (click)="loadPrevPage()">
+      <Prev
+    </button>
+    <button *ngIf="videoList.length" (click)="loadNextPage()">Nex></button>
+  </div>
+  <div class="loading" *ngIf="!videoList.length">
+    <img alt="loading" src="../../../assets/images/loading.gif" />
+  </div>
 </div>
