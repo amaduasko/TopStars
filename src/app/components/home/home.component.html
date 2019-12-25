@@ -1,8 +1,9 @@
 <header>
   <h1>Top View Board</h1>
-</header>
-<div class="container">
   <div class="select-box-container">
+    <a routerLink="/favorites" routerLinkActive="router-link-active">
+      >favorites
+    </a>
     <form [formGroup]="form">
       <input
         *ngIf="!isSelectType"
@@ -10,14 +11,29 @@
         placeholder="Type a video name..."
         type="search"
         formControlName="videoName"
+        (keyup)="videoLookUp($event)"
       />
-      <button (click)="lookForVideo()">search</button>
     </form>
   </div>
+</header>
+<div class="container">
   <div class="video-list-container">
-    <div class="" *ngFor="let item of videoList">
-      <a> <img alt="images" src="{{ item.thumbnails }}" /> </a>
-      <h3>{{ item.title }}</h3>
+    <div class="card" *ngFor="let item of videoList">
+      <div class="card-image">
+        <a>
+          <img alt="images" src="{{ item?.thumbnails }}" />
+        </a>
+      </div>
+      <div class="card-body">
+        <h2>{{ item?.channelTitle }}</h2>
+        <h3>{{ item?.title }}</h3>
+        <p><span>View Count:</span> {{ item?.statistic.viewCount }}</p>
+        <p><span>Like Count:</span> {{ item?.statistic.likeCount }}</p>
+        <p><span>Comment Count:</span> {{ item?.statistic.commentCount }}</p>
+      </div>
+      <div class="card-footer">
+        <button (click)="addFavorite(item)">add to favorite</button>
+      </div>
     </div>
   </div>
 </div>

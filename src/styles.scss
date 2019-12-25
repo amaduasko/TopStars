@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar {
+  display: none;
+}
 body {
   background: rgb(34, 95, 195);
   background: linear-gradient(

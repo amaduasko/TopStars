@@ -5,17 +5,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./container/app.component";
 import { HomeComponent } from "./components/home/home.component";
-import { FavoritesComponent } from "./components/favorites/favorites.component";
-import { PagenotfoundComponent } from "./components/pagenotfound/pagenotfound.component";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    FavoritesComponent,
-    PagenotfoundComponent
-  ],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

@@ -1,5 +1,4 @@
-header {
-  position: fixed;
+.header {
   display: flex;
   width: 98%;
   background-color: #2e7d32;
@@ -8,38 +7,25 @@ header {
   overflow: hidden;
   z-index: 10;
   box-shadow: 0 12px 30px #000;
-  h1 {
+  padding: 18px 15px;
+  a {
     font-family: monospace;
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: underline;
     color: wheat;
-    padding: 18px 15px;
-    margin: 0;
+    margin-right: 15px;
   }
-  .select-box-container {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: 20px;
-    padding-top: 12px;
-    form {
-      width: 50%;
-      .text-form {
-        width: 100%;
-        border: thin;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        font-family: monospace;
-      }
-    }
-    a {
-      font-family: monospace;
-      font-weight: bold;
-      padding-top: 12px;
-      font-size: 25px;
-      color: wheat;
-      margin-left: 10px;
+  button {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    background: transparent;
+    color: wheat;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(34, 95, 195, 1);
     }
   }
 }
@@ -89,26 +75,13 @@ header {
           }
         }
       }
-      .card-footer {
-        margin-bottom: auto;
-        button {
-          display: block;
-          background: transparent;
-          width: 80%;
-          margin: auto;
-          margin-bottom: 10px;
-          border-radius: 10px;
-          font-weight: bold;
-          text-transform: uppercase;
-          font-family: monospace;
-          font-size: 18px;
-          padding: 5px 10px;
-          cursor: pointer;
-          &:hover {
-            background-color: rgba(34, 95, 195, 1);
-          }
-        }
-      }
     }
+  }
+}
+.empty-pop {
+  h1 {
+    color: wheat;
+    font-size: 40px;
+    padding-left: 20px;
   }
 }
