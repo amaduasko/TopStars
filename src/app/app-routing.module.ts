@@ -1,20 +1,20 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./components/home/home.component";
+import { HomeComponent } from "./modules/home/container/home.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   {
     path: "favorites",
     loadChildren: () =>
-      import("./components/favorites/favorite.module").then(
+      import("./modules/favorites/favorite.module").then(
         module => module.FavoriteModule
       )
   },
   {
     path: "**",
     loadChildren: () =>
-      import("./components/pagenotfound/pagenotfound.module").then(
+      import("./modules/pagenotfound/pagenotfound.module").then(
         module => module.PagenotfoundModule
       )
   }

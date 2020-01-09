@@ -1,0 +1,16 @@
+<div class="header">
+  <a routerLink="/" routerLinkActive="router-link-active">home</a>
+</div>
+<div *ngIf="favorites.length" class="container">
+  <div class="video-list-container">
+    <app-card
+      class="card"
+      *ngFor="let item of favorites"
+      [item]="item"
+      (itemSelect)="removeItem($event)"
+    ></app-card>
+  </div>
+</div>
+<div class="empty-pop" *ngIf="!favorites.length">
+  <h1>no favorites yet ...)))</h1>
+</div>

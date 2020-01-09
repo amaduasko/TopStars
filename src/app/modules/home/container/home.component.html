@@ -1,0 +1,41 @@
+<header>
+  <h1>Top View Board</h1>
+  <div class="fav-link-container">
+    <a routerLink="/favorites" routerLinkActive="router-link-active">
+      favorites
+    </a>
+  </div>
+  <div class="select-box-container">
+    <form [formGroup]="form">
+      <input
+        *ngIf="!isSelectType"
+        class="text-form"
+        placeholder="Type a video name..."
+        type="search"
+        formControlName="videoName"
+        (keyup)="videoLookUp($event)"
+      />
+    </form>
+  </div>
+</header>
+<div class="container">
+  <div class="video-list-container">
+    <app-card
+      class="card"
+      *ngFor="let item of videoList"
+      [item]="item"
+      (itemSelect)="handleFavoriteActions($event)"
+    ></app-card>
+    <div *ngIf="videoList.length" class="nav-container">
+      <button *ngIf="prevPageToken" (click)="loadPage(prevPageToken)">
+        <Prev
+      </button>
+      <button *ngIf="nextPageToken" (click)="loadPage(nextPageToken)">
+        Nex>
+      </button>
+    </div>
+    <div class="loading" *ngIf="!videoList.length">
+      <img alt="loading" src="../../../assets/images/loading.gif" />
+    </div>
+  </div>
+</div>

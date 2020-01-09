@@ -1,0 +1,26 @@
+<div class="card-header">
+  <h2>{{ item?.channelTitle }}</h2>
+</div>
+<div
+  style.background-image="url({{ item?.thumbnails }})"
+  style="background-repeat: no-repeat; background-size: cover;"
+  class="card-image"
+>
+  <a></a>
+</div>
+<div class="card-body">
+  <div class="card-desc-container">
+    <h3>{{ item?.title }}</h3>
+    <p><span>View Count:</span> {{ item?.statistic.viewCount }}</p>
+    <p><span>Like Count:</span> {{ item?.statistic.likeCount }}</p>
+    <p><span>Comment Count:</span> {{ item?.statistic.commentCount }}</p>
+  </div>
+  <div class="card-fav-logo-container">
+    <button (click)="itemSelected(item)">
+      <img
+        alt="add to fav"
+        src="{{ item?.isFavorite ? addedFavLogo : favLogo }}"
+      />
+    </button>
+  </div>
+</div>
