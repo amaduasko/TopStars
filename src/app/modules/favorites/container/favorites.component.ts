@@ -9,7 +9,6 @@ export class FavoritesComponent implements OnInit {
   favorites: object[];
   constructor(public favorite: FavoritesService) {}
   getFavorites(): void {
-    this.favorite.getFavorites();
     this.favorites = this.favorite.favorites;
   }
   ngOnInit() {
